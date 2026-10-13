@@ -14,19 +14,36 @@ def calculate_node_degrees(edges: list) -> dict:
 
 def find_shortest_path(edges: list, source: str, target: str) -> list:
     """Sub-task 2: Find the shortest path between source and target nodes."""
-    pass
+    G = nx.Graph()
+    G.add_edges_from(edges)
+    return nx.shortest_path(G, source=source, target=target)
+
+
 
 def count_connected_components(edges: list) -> int:
-    """Sub-task 3: Count the number of connected components in an undirected graph."""
-    pass
+    if not edges:
+        return 0
+    G = nx.Graph()
+    G.add_edges_from(edges)
+    return nx.number_connected_components(G)
 
 def compute_topological_sort(directed_edges: list) -> list:
     """Sub-task 4: Compute a topological ordering of nodes in a DAG."""
-    pass
+    if not directed_edges:
+        return []
+
+    G = nx.DiGraph()
+    G.add_edges_from(directed_edges)
+    return list(nx.topological_sort(G))
+
 
 def compute_average_clustering(edges: list) -> float:
     """Sub-task 5: Compute the average clustering coefficient of an undirected graph."""
-    pass
+    if not edges:
+        return 0.0
+    G = nx.Graph()
+    G.add_edges_from(edges)
+    return float(nx.average_clustering(G))
 
 def main():
     print("Sub-task 1:", calculate_node_degrees([("A", "B"), ("B", "C"), ("B", "D")]))
